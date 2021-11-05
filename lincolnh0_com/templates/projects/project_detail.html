@@ -1,0 +1,31 @@
+{% extends 'projects/project_base.html' %}
+
+{% block content %}
+<div class="projects-container">
+
+    <div class="page-section projects--header">
+        <h1 class="page-title">{{ object.title }}</h1>
+        <p class="page-title">{{ object.created }}</p>
+    </div>
+    <article class="page-section projects--article row">
+        <div class="col-lg-10">
+            <p class="projects--body">{{ object.body|safe }}<p>
+        </div>
+    </article>
+
+    <div class="page-section projects--info row">
+        <div class="col-lg-12 col-md-6">
+        {% if object.source_link %}
+            <a class="btn btn-dark " href="{{ object.source_link}}" target="_blank" rel="noreferrer">Source</a>
+        {% else %}
+            <a class="btn btn-dark disabled">Source</a>
+        {% endif %}
+        {% if object.demo_link %}
+            <a class="btn btn-dark" href="{{ object.demo_link}}" target="_blank" rel="noreferrer">Demo</a>
+        {% else %}
+            <a class="btn btn-dark disabled">Demo</a>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

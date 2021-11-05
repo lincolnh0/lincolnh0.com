@@ -16,6 +16,7 @@ urlpatterns = [
     path("users/", include("lincolnh0_com.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("projects/", include("lincolnh0_com.projects.urls", namespace="projects")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

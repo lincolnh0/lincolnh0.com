@@ -73,6 +73,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "lincolnh0_com.users.apps.UsersConfig",
+    "lincolnh0_com.projects",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -269,22 +270,30 @@ SOCIALACCOUNT_ADAPTER = "lincolnh0_com.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-CKEDITOR_UPLOAD_PATH = 'ckeditor/'
+CKEDITOR_UPLOAD_PATH = "ckeditor/"
 CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_CONFIGS = {
-'default': {
-    'toolbar_YourCustomToolbarConfig': [
-            {'name': 'styles', 'items': ['Styles', 'Format']},
-            {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']},
-            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-            {'name': 'insert',
-             'items': ['Image', 'Table', 'Iframe']},
-            {'name': 'document', 'items': ['Source', '-','Templates']},
+    "default": {
+        "toolbar_YourCustomToolbarConfig": [
+            {"name": "styles", "items": ["Styles", "Format"]},
+            {
+                "name": "basicstyles",
+                "items": [
+                    "Bold",
+                    "Italic",
+                    "Underline",
+                    "Strike",
+                    "Subscript",
+                    "Superscript",
+                ],
+            },
+            {"name": "links", "items": ["Link", "Unlink", "Anchor"]},
+            {"name": "insert", "items": ["Image", "Table", "Iframe"]},
+            {"name": "document", "items": ["Source", "-", "Templates"]},
         ],
-    'toolbar': 'YourCustomToolbarConfig', #you can change this based on your requirements.
-    'width': 'auto',
-    'height': '500px',
+        "toolbar": "YourCustomToolbarConfig",  # you can change this based on your requirements.
+        "width": "auto",
+        "height": "500px",
     },
 }
 
@@ -294,7 +303,6 @@ CSP_SCRIPT_SRC = [
     "https://code.jquery.com/jquery-3.5.1.slim.min.js",
     "https://stackpath.bootstrapcdn.com/",
     "https://kit.fontawesome.com/",
-
 ]
 
 CSP_STYLE_SRC = [

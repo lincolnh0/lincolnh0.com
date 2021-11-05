@@ -1,0 +1,22 @@
+{% extends 'projects/project_base.html' %}
+
+{% block content %}
+
+<div class="page-section">
+    <h1 class="page-title">Projects</h1>
+    <p>Some have potential, some need love.</p>
+</div>
+
+<div class="page-section">
+    <ul class="lists page-listing row">
+    {% for object in object_list %}
+      <li class="col-lg-10">
+        <div class="page-listing__item">
+          <h2 class="item-title"><a href="{% url 'projects:detail' object.slug %}">{{ object.title }}</a></h2>
+          <p class="item-body">{{ object.body|striptags|safe|truncatechars_html:200 }}</p>
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

@@ -12,14 +12,13 @@ class Project(models.Model):
     body = RichTextField()
 
     header_image = models.ImageField(upload_to="projects", blank=True, null=True)
-    fa_icon = models.CharField(max_length=100, default="code", verbose_name="FA icon")
 
     source_link = models.CharField(max_length=255, default="", blank=True)
     demo_link = models.CharField(max_length=255, default="", blank=True)
 
     is_published = models.BooleanField()
-    created = models.DateTimeField(null=True)
-    changed = models.DateTimeField(null=True)
+    created = models.DateTimeField(blank=True, null=True)
+    changed = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(default="", max_length=255, blank=True)
 
     def __str__(self):

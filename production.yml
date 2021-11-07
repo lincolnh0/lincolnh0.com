@@ -3,7 +3,6 @@ version: '3'
 volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
-  production_traefik: {}
 
 services:
   django:
@@ -17,7 +16,15 @@ services:
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
+    labels:
+      - traefik.http.routers.django.rule=Host(`www.lincolnh0.com`)
+      - traefik.http.routers.django.tls=true
+      - traefik.http.routers.django.tls.certresolver=lets-encrypt
+      - traefik.http.services.django.loadbalancer.server.port=5000
     command: /start
+    networks:
+      - internal
+      - web
 
   postgres:
     build:
@@ -29,19 +36,20 @@ services:
       - production_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.production/.postgres
-
-  traefik:
-    build:
-      context: .
-      dockerfile: ./compose/production/traefik/Dockerfile
-    image: lincolnh0_com_production_traefik
-    depends_on:
-      - django
-    volumes:
-      - production_traefik:/etc/traefik/acme:z
-    ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
+    labels:
+      - traefik.enable=false
+    networks:
+      - internal
 
   redis:
     image: redis:6
+    labels:
+      - traefik.enable=false
+    networks:
+      - internal
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false

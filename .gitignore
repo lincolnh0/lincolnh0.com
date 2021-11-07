@@ -279,3 +279,4 @@ lincolnh0_com/media/
 .env
 .envs/*
 !.envs/.local/
+.idea

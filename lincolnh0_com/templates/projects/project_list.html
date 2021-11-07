@@ -1,22 +1,37 @@
 {% extends 'projects/project_base.html' %}
 
+{% block title %}Projects | lincolnh0 {% endblock %}
+{% block description %}{{ tag_line }}{% endblock %}
 {% block content %}
 
-<div class="page-section">
-    <h1 class="page-title">Projects</h1>
-    <p>Some have potential, some need love.</p>
-</div>
+<section class="hero">
+  <div class="hero-body">
+    <h1 class="title is-size-1">{{ title }}</h1>
+    <p class="subtitle">{{ tag_line }}</p>
+  </div>
+</section>
 
-<div class="page-section">
-    <ul class="lists page-listing row">
-    {% for object in object_list %}
-      <li class="col-lg-10">
-        <div class="page-listing__item">
-          <h2 class="item-title"><a href="{% url 'projects:detail' object.slug %}">{{ object.title }}</a></h2>
-          <p class="item-body">{{ object.body|striptags|safe|truncatechars_html:200 }}</p>
-        </div>
-      </li>
+<section class="section">
+    <div class="columns is-multiline">
+    {% for object in page_obj %}
+      <div class="column is-one-third">
+        <a href="{% url 'projects:detail' object.slug %}">
+        <h2 class="title has-text-info is-size-4 mb-2">{{ object.title }}</h2>
+        <p class="has-text-black is-size-6">{{ object.tag_line }}</p>
+        </a>
+      </div>
     {% endfor %}
-    </ul>
-</div>
+    </div>
+</section>
+{% if page_obj.has_previous or page_obj.has_next %}
+<nav class="section pagination is-centered" role="navigation" aria-label="pagination">
+  {% if page_obj.has_previous %}
+    <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+  <p class="pagination-list">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
+  {% if page_obj.has_next %}
+      <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">Next</a>
+  {% endif %}
+</nav>
+{% endif %}
 {% endblock content %}

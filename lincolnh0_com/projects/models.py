@@ -8,6 +8,7 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class Project(models.Model):
     title = models.CharField(max_length=255)
+    tag_line = models.CharField(max_length=200, default="")
     body = RichTextField()
 
     header_image = models.ImageField(upload_to="projects", blank=True, null=True)

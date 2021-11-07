@@ -19,6 +19,7 @@ projects_detail_view = ProjectDetailView.as_view()
 
 class ProjectListView(ListView):
     model = Project
+    paginate_by = 12
 
     def get_queryset(self):
         projects = (
@@ -29,6 +30,7 @@ class ProjectListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Projects"
+        context["tag_line"] = "From sandbox ideas to fully built projects."
         return context
 
 

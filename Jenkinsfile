@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "scp -r lincolnh0:~/.production /var/lib/jenkins/workspace/lincolnh0/.envs/"
+                sh "scp -r lincolnh0:~/.production .envs/"
                 sh "docker context use lincolnh0"
                 sh "docker-compose -f production.yml build"
                 sh "docker-compose -f production.yml up --no-deps -d django"

@@ -1,39 +1,51 @@
 {% extends 'projects/project_base.html' %}
 {% load static i18n %}
+{% load thumbnail %}
 
 {% block title %}{{ object.title }} | lincolnh0 {% endblock %}
 {% block description %}{{ object.tag_line }}{% endblock %}
 
 
 {% block content %}
-<section class="section py-1">
-  <a href="{% url 'projects:list' %}" class="has-text-info">
-    <span class="icon"><i class="fa fa-arrow-left"></i></span>
-    {% translate "Back to projects" %}
-  </a>
-</section>
 <section class="hero">
   <div class="hero-body">
-    <h1 class="title">{{ object.title }}</h1>
-    <p class="subtitle">{{ object.created }}</p>
+    <figure class="image">
+      {% thumbnail object.header_image "1920x400" crop="center" as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }} - thumbnail">
+      {% endthumbnail %}
+    </figure>
   </div>
 </section>
-<section class="section">
-  <article class="content">
-    <p>{{ object.body|safe }}<p>
-  </article>
+<div class="container">
+  <section class="section py-1">
+    <a href="{% url 'projects:list' %}" class="has-text-info">
+      <span class="icon"><i class="fa fa-arrow-left"></i></span>
+      {% translate "Back to projects" %}
+    </a>
+  </section>
+  <section class="hero">
+    <div class="hero-body">
+      <h1 class="title">{{ object.title }}</h1>
+      <p class="subtitle">{{ object.created }}</p>
+    </div>
+  </section>
+  <section class="section">
+    <article class="content">
+      <p>{{ object.body|safe }}<p>
+    </article>
 
-  <div class="buttons">
-    {% if object.source_link %}
-      <a class="button is-info" href="{{ object.source_link}}" target="_blank" rel="noreferrer">Source</a>
-    {% else %}
-      <a class="button is-static">Source</a>
-    {% endif %}
-    {% if object.demo_link %}
-      <a class="button is-dark" href="{{ object.demo_link}}" target="_blank" rel="noreferrer">Demo</a>
-    {% else %}
-      <a class="button is-static">Demo</a>
-    {% endif %}
-  </div>
-</section>
+    <div class="buttons">
+      {% if object.source_link %}
+        <a class="button is-info" href="{{ object.source_link}}" target="_blank" rel="noreferrer">Source</a>
+      {% else %}
+        <a class="button is-static">Source</a>
+      {% endif %}
+      {% if object.demo_link %}
+        <a class="button is-dark" href="{{ object.demo_link}}" target="_blank" rel="noreferrer">Demo</a>
+      {% else %}
+        <a class="button is-static">Demo</a>
+      {% endif %}
+    </div>
+  </section>
+</div>
 {% endblock content %}

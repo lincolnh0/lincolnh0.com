@@ -37,27 +37,23 @@
 
   <body>
     {% include "components/navbar.html" %}
-    <section class="section">
-      <div class="container">
-        {% if messages %}
-          {% for message in messages %}
-            <article class="message is-info">
-              <div class="message-header">
-                System Message
-                <button class="delete"></button>
-              </div>
-              <div class="message-body">
-                {{ message }}
-              </div>
-            </article>
-          {% endfor %}
-        {% endif %}
+    {% if messages %}
+      {% for message in messages %}
+        <article class="message is-info">
+          <div class="message-header">
+            System Message
+            <button class="delete"></button>
+          </div>
+          <div class="message-body">
+            {{ message }}
+          </div>
+        </article>
+      {% endfor %}
+    {% endif %}
 
-        {% block content %}
-          <p>Use this document as a way to quick start any new project.</p>
-        {% endblock content %}
-      </div>
-    </section>
+    {% block content %}
+      <p>Use this document as a way to quick start any new project.</p>
+    {% endblock content %}
     {% include "components/footer.html" %}
     {% block modal %}{% endblock modal %}
 

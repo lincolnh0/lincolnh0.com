@@ -1,37 +1,51 @@
 {% extends 'projects/project_base.html' %}
+{% load thumbnail %}
 
 {% block title %}Projects | lincolnh0 {% endblock %}
 {% block description %}{{ tag_line }}{% endblock %}
 {% block content %}
+<div class="container">
+  <section class="hero is-medium">
+    <div class="hero-body">
+      <h1 class="title is-size-1">{{ title }}</h1>
+      <p class="subtitle">{{ tag_line }}</p>
+    </div>
+  </section>
 
-<section class="hero">
-  <div class="hero-body">
-    <h1 class="title is-size-1">{{ title }}</h1>
-    <p class="subtitle">{{ tag_line }}</p>
-  </div>
-</section>
-
-<section class="section">
+  <section class="section">
     <div class="columns is-multiline">
     {% for object in page_obj %}
-      <div class="column is-one-third">
+      <div class="card column is-one-third block">
         <a href="{% url 'projects:detail' object.slug %}">
-        <h2 class="title has-text-info is-size-4 mb-2">{{ object.title }}</h2>
-        <p class="has-text-black is-size-6">{{ object.tag_line }}</p>
+          {% if object.header_image %}
+            <div class="card-image">
+              <figure class="image is-16by9">
+                {% thumbnail object.header_image "400x225" crop="center" as im %}
+                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }} - thumbnail">
+                {% endthumbnail %}
+              </figure>
+            </div>
+          {% endif %}
+          <div class="card-content">
+            <h2 class="title has-text-info is-size-4 mb-2">{{ object.title }}</h2>
+            <p class="has-text-black is-size-6">{{ object.tag_line }}</p>
+          </div>
         </a>
       </div>
     {% endfor %}
     </div>
-</section>
-{% if page_obj.has_previous or page_obj.has_next %}
-<nav class="section pagination is-centered" role="navigation" aria-label="pagination">
-  {% if page_obj.has_previous %}
-    <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  </section>
+  {% if page_obj.has_previous or page_obj.has_next %}
+  <nav class="section pagination is-centered" role="navigation" aria-label="pagination">
+    {% if page_obj.has_previous %}
+      <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    <p class="pagination-list">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
+    {% if page_obj.has_next %}
+        <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+  </nav>
   {% endif %}
-  <p class="pagination-list">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
-  {% if page_obj.has_next %}
-      <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">Next</a>
-  {% endif %}
-</nav>
-{% endif %}
+</div>
+
 {% endblock content %}

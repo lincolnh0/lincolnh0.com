@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh "docker context use default"
                 sh "docker-compose -f test.yml build"
                 sh "docker-compose -f test.yml up -d"
                 sh "docker-compose -f test.yml run --rm django python manage.py migrate"

@@ -9,11 +9,19 @@
 {% block content %}
 <section class="hero">
   <div class="hero-body">
-    <figure class="image">
-      {% thumbnail object.header_image "1920x400" crop="center" as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }} - thumbnail">
+    <picture class="image">
+      {% thumbnail object.header_image "480x180" crop="center" as im %}
+        <source media="(max-width: 596px)" srcset="{{ im.url }}">
       {% endthumbnail %}
-    </figure>
+
+      {% thumbnail object.header_image "960x360" crop="center" as im %}
+        <source media="(max-width: 768px)" srcset="{{ im.url }}">
+      {% endthumbnail %}
+
+      {% thumbnail object.header_image "1920x480" crop="center" as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }} - banner">
+      {% endthumbnail %}
+    </picture>
   </div>
 </section>
 <div class="container">

@@ -1,6 +1,6 @@
 {% load static i18n %}
-<nav class="navbar is-white has-shadow is-spaced" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+<nav class="navbar is-white has-shadow is-spaced py-2" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand pl-2">
     <a class="navbar-item" href="/">
       <svg width="30" height="30" viewBox="0 0 138 138" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill="#3e8ed0" fill-rule="evenodd" clip-rule="evenodd" d="M72.5355 1.82484C70.5829 -0.127777 67.4171 -0.127776 65.4644 1.82485L1.82483 65.4645C-0.127795 67.4171 -0.127794 70.5829 1.82483 72.5355L65.4644 136.175C67.4171 138.128 70.5829 138.128 72.5355 136.175L136.175 72.5355C138.128 70.5829 138.128 67.4171 136.175 65.4645L72.5355 1.82484ZM74.5208 18.8126L38.4584 54.8751L34.5693 58.7642L38.4584 62.6532L52.9541 77.1489L38.4583 91.6447L46.2365 99.4229L60.7322 84.9271L71.3389 95.5337L56.8431 110.029L64.6213 117.808L102.098 80.331L94.3198 72.5528L79.117 87.7556L68.5104 77.1489L83.7131 61.9462L75.935 54.168L60.7322 69.3708L50.1256 58.7642L82.299 26.5908L74.5208 18.8126Z"/>
@@ -22,26 +22,9 @@
       <a class="navbar-item" href="{% url 'projects:list' %}">
         {% translate "Projects" %}
       </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
+<!--      <a class="navbar-item" href="#">-->
+<!--        {% translate "Search" %}-->
+<!--      </a>-->
     </div>
 
     <div class="navbar-end">

@@ -34,10 +34,11 @@
   <section class="hero">
     <div class="hero-body">
       <h1 class="title">{{ object.title }}</h1>
-      <p class="subtitle">{{ object.created }}</p>
+      <p class="subtitle">{{ object.tag_line }}</p>
+      <p class="content">{{ object.created|date:"D d M Y" }}</p>
     </div>
   </section>
-  <section class="section">
+  <section class="section pt-0">
     <article class="content">
       <p>{{ object.body|safe }}<p>
     </article>

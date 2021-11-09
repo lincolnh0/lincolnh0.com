@@ -1,0 +1,27 @@
+{% load static i18n %}
+{% load thumbnail %}
+<section class="section">
+  <h2 class="title py-4">Featured projects</h2>
+  <div class="columns is-3">
+    {% for project in projects %}
+      <div class="column is-one-third">
+        <a href="{% url 'projects:detail' project.slug %}">
+          {% if project.header_image %}
+            <div class="card-image">
+              <figure class="image is-16by9">
+                {% thumbnail project.header_image "400x225" crop="center" as im %}
+                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }} - thumbnail">
+                {% endthumbnail %}
+              </figure>
+            </div>
+          {% endif %}
+          <div class="card-content">
+            <h2 class="title has-text-info is-size-4 mb-2">{{ project.title }}</h2>
+            <p class="has-text-black is-size-6">{{ project.tag_line }}</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+  <a class="button is-medium is-fullwidth" href="{% url 'projects:list' %}">See all projects</a>
+</section>

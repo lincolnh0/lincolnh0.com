@@ -1,7 +1,7 @@
 {% extends 'projects/project_base.html' %}
 {% load thumbnail %}
 
-{% block title %}Projects | lincolnh0 {% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block description %}{{ tag_line }}{% endblock %}
 {% block content %}
 <div class="container">
@@ -15,7 +15,7 @@
   <section class="section">
     <div class="columns is-multiline">
     {% for object in page_obj %}
-      <div class="card column is-one-third block">
+      <div class="column is-one-third block">
         <a href="{% url 'projects:detail' object.slug %}">
           {% if object.header_image %}
             <div class="card-image">

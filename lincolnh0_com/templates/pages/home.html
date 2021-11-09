@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block title %}Home | lincolnh0{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
 <div class="container">
@@ -27,5 +27,8 @@
       <p class="subtitle">my name is lincoln</p>
     </div>
   </section>
+  {% if featured_projects %}
+    {% include "components/project_tiles.html" with projects=featured_projects %}
+  {% endif %}
 </div>
 {% endblock %}

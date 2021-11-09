@@ -17,6 +17,7 @@ class Project(models.Model):
     demo_link = models.CharField(max_length=255, default="", blank=True)
 
     is_published = models.BooleanField()
+    featured = models.BooleanField(default=False)
     created = models.DateTimeField(blank=True, null=True)
     changed = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(default="", max_length=255, blank=True)

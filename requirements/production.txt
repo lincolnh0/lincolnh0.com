@@ -8,3 +8,8 @@ psycopg2==2.9.1  # https://github.com/psycopg/psycopg2
 # Django
 # ------------------------------------------------------------------------------
 django-anymail[mailgun]==8.4  # https://github.com/anymail/django-anymail
+
+# Storage
+django-storages==1.12.3
+boto==2.49.0
+boto3==1.20.2

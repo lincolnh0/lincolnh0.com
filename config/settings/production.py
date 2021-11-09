@@ -56,9 +56,12 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 
 # STATIC
 # ------------------------
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# MEDIA
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += ["storages"]
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 LINODE_BUCKET = env("LINODE_BUCKET")
 LINODE_BUCKET_REGION = env("LINODE_BUCKET_REGION")
 LINODE_BUCKET_ACCESS_KEY = env("LINODE_BUCKET_ACCESS_KEY")
@@ -70,8 +73,6 @@ AWS_SECRET_ACCESS_KEY = LINODE_BUCKET_SECRET_KEY
 AWS_S3_REGION_NAME = LINODE_BUCKET_REGION
 AWS_S3_USE_SSL = True
 AWS_STORAGE_BUCKET_NAME = LINODE_BUCKET
-# MEDIA
-# ------------------------------------------------------------------------------
 
 # TEMPLATES
 # ------------------------------------------------------------------------------

@@ -22,7 +22,6 @@ pipeline {
                         currentBuild.result = 'UNSTABLE'
                     }
                 }
-                sh "docker-compose -f test.yml stop"
             }
         }
         stage('Deploy') {
@@ -31,7 +30,14 @@ pipeline {
                 sh "docker context use lincolnh0"
                 sh "docker-compose -f production.yml build"
                 sh "docker-compose -f production.yml up --no-deps -d django"
+                sh "docker-compose -f production.yml run --rm django python manage.py makemigrations"
                 sh "docker-compose -f production.yml run --rm django python manage.py migrate"
+            }
+        }
+        stage('Tidy up') {
+            steps {
+                sh "docker context use default"
+                sh "docker-compose -f test.yml stop"
             }
         }
     }

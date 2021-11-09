@@ -160,5 +160,5 @@ LOGGING = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 THUMBNAIL_KVSTORE = "sorl.thumbnail.kvstores.redis_kvstore.KVStore"
-THUMBNAIL_REDIS_HOST = "localhost"
+THUMBNAIL_REDIS_HOST = "redis"
 THUMBNAIL_REDIS_PORT = 6379

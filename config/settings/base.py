@@ -300,18 +300,16 @@ CKEDITOR_CONFIGS = {
 
 CSP_SCRIPT_SRC = [
     "'self'",
-    "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
-    "https://code.jquery.com/jquery-3.5.1.slim.min.js",
-    "https://stackpath.bootstrapcdn.com/",
+    "https://eu-central-1.linodeobjects.com/",
     "https://kit.fontawesome.com/",
 ]
 
 CSP_STYLE_SRC = [
     "'self'",
     "'unsafe-inline'",
+    "https://eu-central-1.linodeobjects.com/",
     "https://fonts.googleapis.com/",
     "https://ka-f.fontawesome.com/",
-    "https://stackpath.bootstrapcdn.com/",
 ]
 
 CSP_CONNECT_SRC = [

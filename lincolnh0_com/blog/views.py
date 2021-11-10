@@ -30,6 +30,7 @@ class BlogListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Blog posts"
+        context["tag_line"] = "Intermittent and unsolicited updates on anything and everything."
         return context
 
 

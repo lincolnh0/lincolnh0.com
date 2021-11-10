@@ -75,7 +75,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "lincolnh0_com.users.apps.UsersConfig",
     "lincolnh0_com.projects",
-    # Your stuff: custom apps go here
+    "lincolnh0_com.blog",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

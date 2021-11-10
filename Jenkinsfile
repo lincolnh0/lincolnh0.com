@@ -2,6 +2,17 @@ pipeline {
     agent any
 
     stages {
+        stage('Basic Tests') {
+            steps {
+                fileExists("local.yml")
+                fileExists("test.yml")
+                fileExists("production.yml")
+                fileExists("manage.py")
+                fileExists("config/settings/base.py")
+                fileExists("config/settings/local.py")
+                fileExists("config/settings/production.py")
+            }
+        }
         stage('Build') {
             steps {
                 sh "docker context use default"

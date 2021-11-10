@@ -21,8 +21,8 @@ services:
       - traefik.http.routers.django.tls=true
       - traefik.http.routers.django.tls.certresolver=lets-encrypt
       - traefik.http.services.django.loadbalancer.server.port=5000
-      - traefik.http.middlewares.test-redirectregex.redirectregex.regex=^https://lincolnh0\.com/(.*)
-      - traefik.http.middlewares.test-redirectregex.redirectregex.replacement=https://www.lincolnh0.com/${1}
+      - traefik.http.middlewares.django.redirectregex.regex=^https://lincolnh0\.com/(.*)
+      - traefik.http.middlewares.django.redirectregex.replacement=https://www.lincolnh0.com/${1}
     command: /start
     networks:
       - internal

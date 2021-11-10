@@ -280,3 +280,7 @@ lincolnh0_com/media/
 .envs/*
 !.envs/.local/
 .idea/
+
+### Database
+*.sql
+*.sql.gz

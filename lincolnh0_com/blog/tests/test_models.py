@@ -1,10 +1,10 @@
-from .base import BlogTestCase
-from ..models import Blog
+from .base import PostTestCase
+from ..models import Post
 
 
-class BlogModelTestCase(BlogTestCase):
+class PostModelTestCase(PostTestCase):
 
-    def test_project_string_is_title(self):
-        """Projects are printed by their titles."""
-        test_project = Blog.objects.get(title="My test blog")
-        self.assertEqual(str(test_project), "My test blog")
+    def test_post_string_is_title(self):
+        """Posts are printed by their titles."""
+        test_blog = Post.objects.get(title="My test blog")
+        self.assertEqual(str(test_blog), "My test blog")

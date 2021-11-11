@@ -1,15 +1,15 @@
 from django.test import TestCase
-from ..models import Blog
+from ..models import Post
 
 
-class BlogTestCase(TestCase):
+class PostTestCase(TestCase):
     def setUp(self):
-        Blog.objects.create(
+        Post.objects.create(
             title="My test blog",
             body="<p>Test content</p>",
             is_published=False
         )
-        Blog.objects.create(
+        Post.objects.create(
             title="My published test blog",
             body="<p>Test content</p>",
             is_published=True

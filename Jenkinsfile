@@ -53,11 +53,19 @@ pipeline {
                 sh "scp -r lincolnh0:~/.production .envs/"
                 sh "docker-compose --context lincolnh0 -f production.yml build"
                 sh "docker-compose --context lincolnh0 -f production.yml up --no-deps -d django"
+            }
+        }
+        stage('Migrations') {
+            when {
+                expression { params.MIGRATE == true }
+            }
+            steps {
                 sh "docker-compose --context lincolnh0 -f production.yml run --rm django python manage.py migrate"
             }
         }
         stage('Tidy up') {
             steps {
+                sh "rm -rf ./envs/.production"
                 sh "docker-compose -f test.yml stop"
             }
         }

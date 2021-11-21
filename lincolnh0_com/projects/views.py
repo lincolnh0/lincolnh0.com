@@ -1,6 +1,7 @@
 from django.views.generic import (
     DetailView,
     ListView,
+    CreateView,
     UpdateView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -39,6 +40,22 @@ class ProjectListView(ListView):
 
 
 projects_list_view = ProjectListView.as_view()
+
+class ProjectCreateView(LoginRequiredMixin, CreateView):
+    """
+    Create view for new project page.
+    """
+
+    model = Project
+    form_class = ProjectForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create a project'
+        return context
+
+
+project_create_view = ProjectCreateView.as_view()
 
 
 class ProjectUpdateView(LoginRequiredMixin, UpdateView):

@@ -35,7 +35,7 @@
     <div class="hero-body">
     {% if request.user.is_authenticated %}
       <div class="buttons">
-        <a class="button" href="{% url 'projects:update' object.id %}">Edit</a>
+        <a class="button is-warning" href="{% url 'projects:update' object.id %}">Edit</a>
       </div>
     {% endif %}
       <h1 class="title">{{ object.title }}</h1>

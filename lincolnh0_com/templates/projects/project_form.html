@@ -8,9 +8,6 @@
 <div class="container">
   <section class="hero">
     <div class="hero-body">
-      <div class="buttons">
-        <a class="button" href="{% url 'projects:detail' object.slug %}">View</a>
-      </div>
       <h1 class="title">{{ title }}</h1>
     </div>
   </section>
@@ -46,6 +43,7 @@
             </div>
           </div>
           <div class="field">
+            <label class="label">Header image</label>
             {{ form.header_image }}
           </div>
 
@@ -72,7 +70,11 @@
 
       <div class="buttons">
         <button type="submit" class="button is-info">Save</button>
-        <button type="submit" class="button is-danger">Delete</button>
+        {% if object %}
+          <a class="button" href="{% url 'projects:detail' object.slug %}">Cancel</a>
+        {% else %}
+          <a class="button" href="{% url 'projects:list'%}">Cancel</a>
+        {% endif %}
       </div>
     </form>
   </div>

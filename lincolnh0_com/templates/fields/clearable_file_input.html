@@ -1,9 +1,3 @@
-{% if widget.is_initial %}
-<div class="field">
-  {{ widget.initial_text }}: <a href="{{ widget.value.url }}">{{ widget.value }}</a>
-</div>
-{% endif %}
-
 {% if not widget.required %}
 <div class="field">
   <label class="checkbox" for="{{ widget.checkbox_id }}">
@@ -23,6 +17,10 @@
         Choose a file…
       </span>
     </span>
-    <span class="file-name"></span>
+    <span class="file-name">
+      {% if widget.is_initial %}
+        <a href="{{ widget.value.url }}">{{ widget.value }}</a>
+      {% endif %}
+    </span>
   </label>
 </div>

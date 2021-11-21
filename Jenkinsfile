@@ -51,8 +51,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh "scp -r lincolnh0:~/.production .envs/"
-                sh "docker-compose --context lincolnh0 -f production.yml build"
-                sh "docker-compose --context lincolnh0 -f production.yml up --no-deps -d django"
+                sh "docker context use lincolnh0"
+                sh "docker-compose -f production.yml build"
+                sh "docker-compose -f production.yml up --no-deps -d django"
             }
         }
         stage('Migrations') {
@@ -65,6 +66,7 @@ pipeline {
         }
         stage('Tidy up') {
             steps {
+                sh "docker context use default"
                 sh "rm -rf ./envs/.production"
                 sh "docker-compose -f test.yml stop"
             }

@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from lincolnh0_com.projects.models import Project
+from lincolnh0_com.blog.models import Post
 
 
 class LandingPageView(TemplateView):
@@ -10,6 +11,10 @@ class LandingPageView(TemplateView):
         context["title"] = "Home"
         context["featured_projects"] = (
             Project.objects.filter(featured=True).order_by("created").reverse()[:3]
+        )
+
+        context["latest_posts"] = (
+            Post.objects.filter(is_published=True).order_by("created").reverse()[:5]
         )
         return context
 

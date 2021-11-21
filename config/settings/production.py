@@ -57,8 +57,22 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # STATIC
 # ------------------------
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # MEDIA
 # ------------------------------------------------------------------------------
+INSTALLED_APPS += ["storages"]
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+LINODE_BUCKET = env("LINODE_BUCKET")
+LINODE_BUCKET_REGION = env("LINODE_BUCKET_REGION")
+LINODE_BUCKET_ACCESS_KEY = env("LINODE_BUCKET_ACCESS_KEY")
+LINODE_BUCKET_SECRET_KEY = env("LINODE_BUCKET_SECRET_KEY")
+
+AWS_S3_ENDPOINT_URL = f"https://{LINODE_BUCKET_REGION}.linodeobjects.com"
+AWS_ACCESS_KEY_ID = LINODE_BUCKET_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY = LINODE_BUCKET_SECRET_KEY
+AWS_S3_REGION_NAME = LINODE_BUCKET_REGION
+AWS_S3_USE_SSL = True
+AWS_STORAGE_BUCKET_NAME = LINODE_BUCKET
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -159,3 +173,7 @@ LOGGING = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+THUMBNAIL_KVSTORE = "sorl.thumbnail.kvstores.redis_kvstore.KVStore"
+THUMBNAIL_REDIS_URL = env("REDIS_URL")
+THUMBNAIL_REDIS_HOST = "redis"
+THUMBNAIL_REDIS_PORT = 6379

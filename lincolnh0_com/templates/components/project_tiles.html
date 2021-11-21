@@ -10,7 +10,7 @@
             <div class="card-image">
               <figure class="image is-16by9">
                 {% thumbnail project.header_image "400x225" crop="center" as im %}
-                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ object.title }} - thumbnail">
+                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ project.title }} - thumbnail">
                 {% endthumbnail %}
               </figure>
             </div>

@@ -1,0 +1,72 @@
+{% extends 'blog/post_base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="container">
+  <section class="hero is-medium">
+    <div class="hero-body">
+      <h1 class="title is-size-1">{{ title }}</h1>
+      <p class="subtitle">{{ tag_line }}</p>
+    </div>
+  </section>
+
+  <section class="section columns is-flex-direction-row-reverse">
+    <div class="column">
+      {% if years|length > 1 %}
+      <div class="box">
+        <h3 class="title is-size-4">Browse by year</h3>
+        <div class="content">
+          <ul>
+            {% for year in years %}
+            <li>
+              {% if request.GET.year == year|date:'Y' %}
+              <strong>{{ year|date:"Y" }}</strong>
+              {% else %}
+              <a class="has-text-info" href="{% url 'blog:list' %}?year={{ year|date:'Y' }}">{{ year|date:"Y" }}</a>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% if request.GET.year %}
+          <a class="button is-fullwidth" href="{% url 'blog:list' %}">See all</a>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="column is-two-thirds">
+    {% for object in page_obj %}
+      <div class="card block">
+        <a href="{% url 'blog:detail' object.slug %}">
+          <div class="card-content">
+            <h2 class="title is-spaced has-text-info is-size-4">{{ object.title }}</h2>
+            <p class="subtitle is-size-6">{{ object.created|date:"d M Y" }}</p>
+          </div>
+        </a>
+<!--        Tag links -->
+<!--        <footer class="card-footer">-->
+<!--          <div class="card-footer-item buttons is-justify-content-left">-->
+<!--            <a class="button" href="#">Hello</a>-->
+<!--            <a class="button" href="#">Hello</a>-->
+<!--            <a class="button" href="#">Hello</a>-->
+<!--          </div>-->
+<!--        </footer>-->
+      </div>
+    {% endfor %}
+
+    {% if page_obj.has_previous or page_obj.has_next %}
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        {% if page_obj.has_previous %}
+          <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        <p class="pagination-list">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
+        {% if page_obj.has_next %}
+            <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+      </nav>
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+{% endblock content %}

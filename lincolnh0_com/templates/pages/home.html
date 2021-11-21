@@ -24,11 +24,15 @@
         </g>
       </svg>
       <h1 class="py-4 title is-size-1">hello👋</h1>
-      <p class="subtitle">my name is lincoln</p>
+      <p class="subtitle">welcome to my dev blog</p>
     </div>
   </section>
   {% if featured_projects %}
     {% include "components/project_tiles.html" with projects=featured_projects %}
+  {% endif %}
+
+  {% if latest_posts %}
+    {% include "components/latest_posts.html" with posts=latest_posts %}
   {% endif %}
 </div>
 {% endblock %}

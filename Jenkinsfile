@@ -61,7 +61,7 @@ pipeline {
                 expression { params.MIGRATE == true }
             }
             steps {
-                sh "docker-compose --context lincolnh0 -f production.yml run --rm django python manage.py migrate"
+                sh "docker-compose -f production.yml run --rm django python manage.py migrate"
             }
         }
         stage('Tidy up') {

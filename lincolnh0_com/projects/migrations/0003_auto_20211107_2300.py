@@ -6,22 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0002_project_tag_line'),
+        ("projects", "0002_project_tag_line"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='project',
-            name='fa_icon',
+            model_name="project",
+            name="fa_icon",
         ),
         migrations.AlterField(
-            model_name='project',
-            name='changed',
+            model_name="project",
+            name="changed",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='created',
+            model_name="project",
+            name="created",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

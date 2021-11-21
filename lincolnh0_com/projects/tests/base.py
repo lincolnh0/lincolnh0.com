@@ -8,11 +8,11 @@ class ProjectTestCase(TestCase):
             title="My test project",
             tag_line="There is only this many tag line",
             body="<p>Test content</p>",
-            is_published=False
+            is_published=False,
         )
         Project.objects.create(
             title="My published test project",
             tag_line="There is only this many tag line",
             body="<p>Test content</p>",
-            is_published=True
+            is_published=True,
         )

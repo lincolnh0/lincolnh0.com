@@ -1,0 +1,80 @@
+{% extends 'projects/project_base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="buttons">
+        <a class="button" href="{% url 'projects:detail' object.slug %}">View</a>
+      </div>
+      <h1 class="title">{{ title }}</h1>
+    </div>
+  </section>
+  <div class="section">
+    {{ form.media }}
+
+    <form class="form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="columns">
+        <div class="column is-half">
+          <div class="field">
+            <label class="label" for="{{ form.title.id_for_label }}">Title</label>
+            <div class="control">
+              {{ form.title }}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="{{ form.tag_line.id_for_label }}">Tag line</label>
+            <div class="control">
+              {{ form.tag_line }}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="{{ form.source_link.id_for_label }}">Source link</label>
+            <div class="control">
+              {{ form.source_link }}
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="{{ form.demo_link.id_for_label }}">Demo link</label>
+            <div class="control">
+              {{ form.demo_link }}
+            </div>
+          </div>
+          <div class="field">
+            {{ form.header_image }}
+          </div>
+
+          <div class="field">
+            <label class="checkbox">
+              {{ form.featured }}
+            Featured</label>
+          </div>
+          <div class="field">
+            <label class="checkbox">
+              {{ form.is_published }}
+            Published</label>
+          </div>
+        </div>
+        <div class="column is-half">
+           <div class="field">
+            <label class="label" for="{{ form.body.id_for_label }}">Body</label>
+            <div class="control">
+              {{ form.body }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="button is-info">Save</button>
+        <button type="submit" class="button is-danger">Delete</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

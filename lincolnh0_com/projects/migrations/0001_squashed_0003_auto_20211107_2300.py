@@ -6,28 +6,45 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    replaces = [('projects', '0001_initial'), ('projects', '0002_project_tag_line'), ('projects', '0003_auto_20211107_2300')]
+    replaces = [
+        ("projects", "0001_initial"),
+        ("projects", "0002_project_tag_line"),
+        ("projects", "0003_auto_20211107_2300"),
+    ]
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('body', ckeditor.fields.RichTextField()),
-                ('header_image', models.ImageField(blank=True, null=True, upload_to='projects')),
-                ('source_link', models.CharField(blank=True, default='', max_length=255)),
-                ('demo_link', models.CharField(blank=True, default='', max_length=255)),
-                ('is_published', models.BooleanField()),
-                ('created', models.DateTimeField(blank=True, null=True)),
-                ('changed', models.DateTimeField(blank=True, null=True)),
-                ('slug', models.SlugField(blank=True, default='', max_length=255)),
-                ('tag_line', models.CharField(default='', max_length=200)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("body", ckeditor.fields.RichTextField()),
+                (
+                    "header_image",
+                    models.ImageField(blank=True, null=True, upload_to="projects"),
+                ),
+                (
+                    "source_link",
+                    models.CharField(blank=True, default="", max_length=255),
+                ),
+                ("demo_link", models.CharField(blank=True, default="", max_length=255)),
+                ("is_published", models.BooleanField()),
+                ("created", models.DateTimeField(blank=True, null=True)),
+                ("changed", models.DateTimeField(blank=True, null=True)),
+                ("slug", models.SlugField(blank=True, default="", max_length=255)),
+                ("tag_line", models.CharField(default="", max_length=200)),
             ],
         ),
     ]

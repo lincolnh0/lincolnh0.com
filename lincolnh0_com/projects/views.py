@@ -1,8 +1,12 @@
 from django.views.generic import (
     DetailView,
     ListView,
+    UpdateView,
 )
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Project
+from .forms import ProjectForm
 
 
 class ProjectDetailView(DetailView):
@@ -35,3 +39,20 @@ class ProjectListView(ListView):
 
 
 projects_list_view = ProjectListView.as_view()
+
+
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    Update view for existing project page.
+    """
+
+    model = Project
+    form_class = ProjectForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Editing ' + context['object'].title
+        return context
+
+
+project_update_view = ProjectUpdateView.as_view()

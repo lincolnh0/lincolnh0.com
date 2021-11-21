@@ -1,0 +1,28 @@
+{% if widget.is_initial %}
+<div class="field">
+  {{ widget.initial_text }}: <a href="{{ widget.value.url }}">{{ widget.value }}</a>
+</div>
+{% endif %}
+
+{% if not widget.required %}
+<div class="field">
+  <label class="checkbox" for="{{ widget.checkbox_id }}">
+    <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+    {{ widget.clear_checkbox_label }}</label>
+</div>
+{% endif %}
+
+<div class="file has-name is-fullwidth field">
+  <label class="file-label" for="id_{{ widget.name }}">
+    <input type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+    <span class="file-cta">
+      <span class="file-icon">
+        <i class="fas fa-upload"></i>
+      </span>
+      <span class="file-label">
+        Choose a file…
+      </span>
+    </span>
+    <span class="file-name"></span>
+  </label>
+</div>

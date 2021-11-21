@@ -46,3 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Add handler for populating file field names.
+  const allFileInputs = document.querySelectorAll('input[type="file"]');
+  allFileInputs.forEach(fileInput => {
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        const fileName = document.querySelector('#' + fileInput.id + ' ~ .file-name');
+        fileName.textContent = fileInput.files[0].name;
+      }
+    })
+  })
+});
+
+

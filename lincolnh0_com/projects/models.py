@@ -11,7 +11,7 @@ class Project(models.Model):
     tag_line = models.CharField(max_length=200, default="")
     body = RichTextField()
 
-    header_image = models.ImageField(upload_to="projects", blank=True, null=True)
+    header_image = models.ImageField(upload_to="projects")
 
     source_link = models.CharField(max_length=255, default="", blank=True)
     demo_link = models.CharField(max_length=255, default="", blank=True)

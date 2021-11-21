@@ -33,6 +33,11 @@
   </section>
   <section class="hero">
     <div class="hero-body">
+    {% if request.user.is_authenticated %}
+      <div class="buttons">
+        <a class="button" href="{% url 'projects:update' object.id %}">Edit</a>
+      </div>
+    {% endif %}
       <h1 class="title">{{ object.title }}</h1>
       <p class="subtitle">{{ object.tag_line }}</p>
       <p class="content">{{ object.created|date:"D d M Y" }}</p>

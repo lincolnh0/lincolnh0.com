@@ -17,13 +17,10 @@ services:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
     labels:
-      - traefik.http.routers.django.rule=Host(`lincolnh0.com`, `www.lincolnh0.com`)
+      - traefik.http.routers.django.rule=Host(`www.lincolnh0.com`)
       - traefik.http.routers.django.tls=true
       - traefik.http.routers.django.tls.certresolver=lets-encrypt
       - traefik.http.services.django.loadbalancer.server.port=5000
-      - traefik.http.middlewares.apexredirect.redirectRegex.regex=^https://lincolnh0\.com/(.*)
-      - traefik.http.middlewares.apexredirect.redirectRegex.replacement=https://www.lincolnh0.com/$${1}
-      - traefik.http.middlewares.apexredirect.redirectRegex.permanent=true
     command: /start
     networks:
       - internal

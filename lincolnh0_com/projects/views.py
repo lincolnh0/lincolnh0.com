@@ -41,6 +41,7 @@ class ProjectListView(ListView):
 
 projects_list_view = ProjectListView.as_view()
 
+
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     """
     Create view for new project page.
@@ -51,7 +52,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Create a project'
+        context["title"] = "Create a project"
         return context
 
 
@@ -68,7 +69,7 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Editing ' + context['object'].title
+        context["title"] = "Editing " + context["object"].title
         return context
 
 

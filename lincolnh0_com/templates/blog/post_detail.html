@@ -16,6 +16,11 @@
     </section>
     <section class="hero">
       <div class="hero-body">
+        {% if request.user.is_authenticated %}
+          <div class="buttons">
+            <a class="button is-warning" href="{% url 'blog:update' object.id %}">Edit</a>
+          </div>
+        {% endif %}
         <h1 class="title">{{ object.title }}</h1>
         <p class="content">{{ object.created|date:"D d M Y" }}</p>
       </div>

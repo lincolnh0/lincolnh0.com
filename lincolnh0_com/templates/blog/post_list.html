@@ -5,6 +5,11 @@
 <div class="container">
   <section class="hero is-medium">
     <div class="hero-body">
+      {% if request.user.is_authenticated %}
+        <div class="buttons">
+          <a class="button is-warning" href="{% url 'blog:create' %}">Create</a>
+        </div>
+      {% endif %}
       <h1 class="title is-size-1">{{ title }}</h1>
       <p class="subtitle">{{ tag_line }}</p>
     </div>

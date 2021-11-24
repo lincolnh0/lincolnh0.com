@@ -1,7 +1,7 @@
-from django.views.generic import (
-    DetailView,
-    ListView,
-)
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
+
+from .forms import PostForm
 from .models import Post
 
 
@@ -43,3 +43,37 @@ class BlogListView(ListView):
 
 
 blog_list_view = BlogListView.as_view()
+
+
+class BlogCreateView(LoginRequiredMixin, CreateView):
+    """
+    Create view for new blog page.
+    """
+
+    model = Post
+    form_class = PostForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Create a post"
+        return context
+
+
+blog_create_view = BlogCreateView.as_view()
+
+
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    Update view for existing blog page.
+    """
+
+    model = Post
+    form_class = PostForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Editing " + context["object"].title
+        return context
+
+
+blog_update_view = BlogUpdateView.as_view()

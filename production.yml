@@ -21,6 +21,7 @@ services:
       - traefik.http.routers.django.tls=true
       - traefik.http.routers.django.tls.certresolver=lets-encrypt
       - traefik.http.services.django.loadbalancer.server.port=5000
+      - traefik.http.services.django.middlewares=["www-redirect"]
     command: /start
     networks:
       - internal

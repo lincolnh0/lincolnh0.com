@@ -1,8 +1,8 @@
 from django.test import Client
-from django.urls import resolve, reverse
+from django.urls import reverse
 
-from .base import PostTestCase
 from ..models import Post
+from .base import PostTestCase
 
 
 class PostFormTestCase(PostTestCase):

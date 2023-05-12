@@ -1,13 +1,8 @@
-from django.views.generic import (
-    DetailView,
-    ListView,
-    CreateView,
-    UpdateView,
-)
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-from .models import Project
 from .forms import ProjectForm
+from .models import Project
 
 
 class ProjectDetailView(DetailView):

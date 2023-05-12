@@ -1,7 +1,10 @@
 from os.path import dirname, join
-from django.test import TestCase
+
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase
+
 from lincolnh0_com.users.models import User
+
 from ..models import Project
 
 

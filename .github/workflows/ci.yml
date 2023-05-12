@@ -1,0 +1,52 @@
+name: CI
+
+# Enable Buildkit and let compose use it to speed up image building
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  pull_request:
+    branches: [ "master", "main" ]
+    paths-ignore: [ "docs/**" ]
+
+  push:
+    branches: [ "master", "main" ]
+    paths-ignore: [ "docs/**" ]
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  # With no caching at all the entire ci process takes 4m 30s to complete!
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Build the Stack
+        run:  docker-compose -f local.yml build
+
+      - name: Run Django Tests
+        run:  |
+          docker-compose -f local.yml run django coverage run -m pytest -v --junitxml="result.xml"
+          docker-compose -f local.yml run django coverage lcov
+
+      - name: Generate Coverage Comment
+        if: always() # Always run this step, even if some tests fail
+        uses: romeovs/lcov-reporter-action@v0.3.1
+        with:
+          lcov-file: "coverage.lcov"
+          filter-changed-files: True
+          delete-old-comments: True
+          title: "Code Coverage Report"
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.6.1
+        if: always() # Always run this step, even if some tests fail
+        with:
+          files: "result.xml"

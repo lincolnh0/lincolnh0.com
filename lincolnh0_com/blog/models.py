@@ -1,13 +1,11 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.shortcuts import reverse
-from django.utils import timezone
-from django.utils import text
-from ckeditor.fields import RichTextField
+from django.utils import text, timezone
 
 
 # Create your models here.
 class Post(models.Model):
-
     title = models.CharField(max_length=255)
     body = RichTextField()
 

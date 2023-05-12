@@ -47,5 +47,5 @@ services:
       - ./config:/app/config:z
       - ./lincolnh0_com:/app/lincolnh0_com:z
     ports:
-      - "7000:7000"
+      - "9000:9000"
     command: /start-docs

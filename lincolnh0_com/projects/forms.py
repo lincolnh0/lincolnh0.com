@@ -1,9 +1,8 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
-
-from .models import Project
 from .fields import BulmaClearableFileInput
+from .models import Project
 
 
 class ProjectForm(forms.ModelForm):

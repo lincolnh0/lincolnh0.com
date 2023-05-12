@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
-from lincolnh0_com.projects.models import Project
+
 from lincolnh0_com.blog.models import Post
+from lincolnh0_com.projects.models import Project
 
 
 class LandingPageView(TemplateView):

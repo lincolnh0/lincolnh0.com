@@ -1,5 +1,5 @@
-from .base import ProjectTestCase
 from ..models import Project
+from .base import ProjectTestCase
 
 
 class ProjectModelTestCase(ProjectTestCase):

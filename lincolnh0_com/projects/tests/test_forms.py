@@ -1,8 +1,8 @@
 from django.test import Client
-from django.urls import resolve, reverse
+from django.urls import reverse
 
-from .base import ProjectTestCase
 from ..models import Project
+from .base import ProjectTestCase
 
 
 class ProjectFormTestCase(ProjectTestCase):

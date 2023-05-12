@@ -1,5 +1,7 @@
 from django.test import TestCase
+
 from lincolnh0_com.users.models import User
+
 from ..models import Post
 
 

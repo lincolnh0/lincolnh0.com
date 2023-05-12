@@ -4,9 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
 
-from lincolnh0_com.pages.views import (
-    landing_page_view
-)
+from lincolnh0_com.pages.views import landing_page_view
 
 urlpatterns = [
     path("", landing_page_view, name="home"),

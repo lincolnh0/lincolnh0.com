@@ -45,7 +45,7 @@ jobs:
           title: "Code Coverage Report"
 
       - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2.7.0
+        uses: EnricoMi/publish-unit-test-result-action@v2.9.0
         if: always() # Always run this step, even if some tests fail
         with:
           files: "result.xml"
